@@ -1,0 +1,74 @@
+TP5如何快速入门？
+　想要在很段时间内学会TP5?前提是你有扎实的PHP基础和学习过框架。
+ 
+TP5是在tp3.2基础是改进的，想要学习起来也不难，只要能够看懂手册，
+ 结合手册做一些小demo,完成基础的增，删，改，查，就基本上是入门了。
+ 第一步：在官方网站下载TP的源代码（http://www.thinkphp.cn/down.html），至于那个版本看你怎么选择，下载完成后拷入你的项目根目录。运行结果如下：
+ 第二：弄清楚每个文件夹：
+ 　project  应用部署目录
+　├─application           应用目录（可设置）
+　│  ├─common             公共模块目录（可更改）
+　│  ├─index              模块目录(可更改)
+　│  │  ├─config.php      模块配置文件
+　│  │  ├─common.php      模块函数文件
+　│  │  ├─controller      控制器目录
+　│  │  ├─model           模型目录
+　│  │  ├─view            视图目录
+　│  │  └─ ...            更多类库目录
+　│  ├─command.php        命令行工具配置文件
+　│  ├─common.php         应用公共（函数）文件
+　│  ├─config.php         应用（公共）配置文件
+　│  ├─database.php       数据库配置文件
+　│  ├─tags.php           应用行为扩展定义文件
+　│  └─route.php          路由配置文件
+　├─extend                扩展类库目录（可定义）
+　├─public                WEB 部署目录（对外访问目录）
+　│  ├─static             静态资源存放目录(css,js,image)
+　│  ├─index.php          应用入口文件
+　│  ├─router.php         快速测试文件
+　│  └─.htaccess          用于 apache 的重写
+　├─runtime               应用的运行时目录（可写，可设置）
+　├─vendor                第三方类库目录（Composer）
+　├─thinkphp              框架系统目录
+　│  ├─lang               语言包目录
+　│  ├─library            框架核心类库目录
+　│  │  ├─think           Think 类库包目录
+　│  │  └─traits          系统 Traits 目录
+　│  ├─tpl                系统模板目录
+　│  ├─.htaccess          用于 apache 的重写
+　│  ├─.travis.yml        CI 定义文件
+　│  ├─base.php           基础定义文件
+　│  ├─composer.json      composer 定义文件
+　│  ├─console.php        控制台入口文件
+　│  ├─convention.php     惯例配置文件
+　│  ├─helper.php         助手函数文件（可选）
+　│  ├─LICENSE.txt        授权说明文件
+　│  ├─phpunit.xml        单元测试配置文件
+　│  ├─README.md          README 文件
+　│  └─start.php          框架引导文件
+　├─build.php             自动生成定义文件（参考）
+　├─composer.json         composer 定义文件
+　├─LICENSE.txt           授权说明文件
+　├─README.md             README 文件
+　├─think                 命令行入口文件第三：比如我要写一个登录的功能，首先我要配置数据库信息，有很多种方法 　1、在Model中配置 
+　　2、在控制器中配置
+ 
+　　3、在database.php中配置
+ 
+一般采用第三种方法，具体操作看TP5手册（https://www.kancloud.cn/manual/thinkphp5/118059）
+ 
+第四、建控制器，model,view的方法，如下图
+建好之后，就可以开始写功能，注意控制器和视图文件名称要一致。
+第五：在视图中引用其他文件：{include file="header" /}
+第六：在视图中地址跳转到控制器 {：url('user/index')}
+第七：数据库操作：
+　　1、查询：Db::table('think_user')->where('status',1)->select();
+　　2、新增：Db::name('user')->insert($data);
+　　3、修改：Db::table('think_user') ->where('id', 1) ->update(['name' => 'thinkphp']);
+　　4、删除：// 根据主键删除
+　　　　　　　　　　　　　　 Db::table('think_user')->delete(1); 
+　　　　　　　　　　　　　　 Db::table('think_user')->delete([1,2,3]); 
+　　　　　　 // 条件删除 
+　　　　　　　　　　　　　　 Db::table('think_user')->where('id',1)->delete(); 
+　　　　　　　　　　　　　　 Db::table('think_user')->where('id','<',10)->delete();
+
